@@ -58,6 +58,11 @@
         </tr>
     </table>
 
+    
+    <script src="source/threestuff/three.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../ThreeScreen/ThreeScreen.js" type="text/javascript" charset="utf-8"></script>
+    <script src="source/threestuff/threescreencontainer.js" type="text/javascript" charset="utf-8"></script>
+    
     <script src="lib/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="lib/dynamicaudio-min.js" type="text/javascript" charset="utf-8"></script>
     <script src="source/nes.js" type="text/javascript" charset="utf-8"></script>
@@ -69,7 +74,7 @@
     <script src="source/ppu.js" type="text/javascript" charset="utf-8"></script>
     <script src="source/rom.js" type="text/javascript" charset="utf-8"></script>
     <script src="source/ui.js" type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript" charset="utf-8">
+    <script type="text/javascript" charset="utf-8"> 
         var nes;
         $(function() {
             nes = new JSNES({
@@ -79,6 +84,8 @@
                         ['LJ65', 'roms/lj65/lj65.nes'],
                     ],
                     "Working": [
+                        ['MARIO!!!!', 'roms/mario.nes'],
+                        ['ZELDA!!!!', 'roms/zelda.nes'],
                         ['Bubble Bobble', 'local-roms/Bubble Bobble (U).nes'],
                         
                         ['Contra', 'local-roms/Contra (U) [!].nes'],

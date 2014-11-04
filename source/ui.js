@@ -16,6 +16,14 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+var threeContainer = new ThreeContainer(document,window,null);
+
+function animateThis() {
+    threeContainer.animate();
+
+}
+
+
 JSNES.DummyUI = function(nes) {
     this.nes = nes;
     this.enable = function() {};
@@ -285,15 +293,41 @@ if (typeof jQuery !== 'undefined') {
 
 
                     //Add three.js hooks here
+                    
+                    var pixCount = 256*240 - 1;
+                    for(j = 0; j < threeContainer.screenHeight; j++) {
+                        
+                        for (i=threeContainer.screenWidth - 1;i>-1;i--) {
+                                threeContainer.changeVoxelColor(i,j,buffer[pixCount--]);
+                        }
+                    
+                    }
+                    
+                    /*
+                    for (i=0; i<256*240; i++) {
+                        if (pixel != prevBuffer[i]) {
+                            threeContainer.changeVoxelColor(i,j,buffer[i]);
+                        }
+
+                    }
+                    */
+                    
+                    
+                    animateThis();
+                    
+                    //end hooks
                     for (i=0; i<256*240; i++) {
                         pixel = buffer[i];
 
-                        if (pixel != prevBuffer[i]) {
+                        if (pixel != prevBuffer[i]) { //This appears to be optimization
                             j = i*4;
-                            imageData[j] = pixel & 0xFF;
-                            imageData[j+1] = (pixel >> 8) & 0xFF;
-                            imageData[j+2] = (pixel >> 16) & 0xFF;
-                            prevBuffer[i] = pixel;
+                            imageData[j] = pixel & 0xFF;            //Store blue
+                            imageData[j+1] = (pixel >> 8) & 0xFF;   //Store green
+                            imageData[j+2] = (pixel >> 16) & 0xFF;  //Store red
+                            //imageData[j+3] would be alpha for a canvas pixel, but it's not necessary to touch
+
+
+                            prevBuffer[i] = pixel; //Save prev pixel
                         }
                     }
 
